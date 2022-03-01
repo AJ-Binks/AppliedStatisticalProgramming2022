@@ -111,8 +111,8 @@ validateDoor <- function(choice){
 
 
 #test validator
-validateDoor(choice=6) #doesnt work
-validateDoor(choice="meow") #doesnt work
+#validateDoor(choice=6) #doesnt work
+#validateDoor(choice="meow") #doesnt work
 validateDoor(choice=1) #works
 validateDoor(choice=2) #works
 validateDoor(choice=3) #works
