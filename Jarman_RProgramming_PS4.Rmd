@@ -150,7 +150,7 @@ top_fav <- tweets_og %>%
   top_n(5, favorite_count)
 top_fav$text
 ```
-Create a \textit{corpus} of the tweet content and put this into the object \texttt{Corpus} using the \texttt{tm} (text mining) package. (Hint: Do the assigned readings.)
+Create a \textit{corpus} of the tweet content and put this into the object \texttt{Corpus} using the \texttt{tm} (text mining) package. 
 ```{r}
 
 ```
