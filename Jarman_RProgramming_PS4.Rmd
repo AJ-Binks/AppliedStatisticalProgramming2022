@@ -110,7 +110,7 @@ ggsave("p.png")
 
 For this question you will be analyzing Tweets from President Trump for various characteristics. Load in the following packages and data:
 
-```{r eval=FALSE}
+```{r}
 # Change eval=FALSE in the code block. Install packages as appropriate.
 library(tidyverse)
 #install.packages('tm')
@@ -123,12 +123,50 @@ trump_tweets_url <- 'https://politicaldatascience.com/PDS/Datasets/trump_tweets.
 tweets <- read_csv(trump_tweets_url)
 ```
 
-\begin{itemize}
-  \item First separate the \texttt{created\_at} variable into two new variables where the date and the time are in separate columns. After you do that, then report the range of dates that is in this dataset.
-  \item Using \texttt{dplyr} subset the data to only include original tweets (remove retweents) and show the text of the President's \textbf{top 5} most popular and most retweeted tweets. (Hint: The \texttt{match} function can help you find the index once you identify the largest values.) 
-  \item Create a \textit{corpus} of the tweet content and put this into the object \texttt{Corpus} using the \texttt{tm} (text mining) package. (Hint: Do the assigned readings.)
-  \item Remove extraneous whitespace, remove numbers and punctuation, convert everything to lower case and remove 'stop words' that have little substantive meaning (the, a, it).
-  \item Now create a \texttt{wordcloud} to visualize the top 50 words the President uses in his tweets. Use only words that occur at least three times. Display the plot with words in random order and use 50 random colors. Save the plot into your forked repository.
-  \item Create a \textit{document term matrix} called \texttt{DTM} that includes the argument \texttt{ control = list(weighting = weightTfIdf)}
-  \item Finally, report the 50 words with the the highest tf.idf scores using a lower frequency bound of .8.
-\end{itemize}
+First separate the \texttt{created\_at} variable into two new variables where the date and the time are in separate columns. After you do that, then report the range of dates that is in this dataset.
+```{r}
+library(stringr)
+tweets[c('date', 'time')] <- str_split_fixed(tweets$created_at, ' ', 2)
+#make dates useable - Ryan did this in inclass14.rmd
+tweets$date <-as.Date(tweets$date, format="%m/%d/%y")
+#report the range of dates that is in this dataset
+range(tweets$date)
+```
+
+Using \texttt{dplyr} subset the data to only include original tweets (remove retweents) and show the text of the President's \textbf{top 5} most popular and most retweeted tweets. (Hint: The \texttt{match} function can help you find the index once you identify the largest values.) 
+```{r}
+library(dplyr)
+tweets_og <- tweets %>% 
+  filter(is_retweet==F)
+#this got rid of 2k obs
+
+#top 5 retweets
+top_retwts <- tweets_og %>% 
+  top_n(5, retweet_count)
+top_retwts$text
+
+#5 most popular
+top_fav <- tweets_og %>%
+  top_n(5, favorite_count)
+top_fav$text
+```
+Create a \textit{corpus} of the tweet content and put this into the object \texttt{Corpus} using the \texttt{tm} (text mining) package. (Hint: Do the assigned readings.)
+```{r}
+
+```
+Remove extraneous whitespace, remove numbers and punctuation, convert everything to lower case and remove 'stop words' that have little substantive meaning (the, a, it).
+```{r}
+
+```
+Now create a \texttt{wordcloud} to visualize the top 50 words the President uses in his tweets. Use only words that occur at least three times. Display the plot with words in random order and use 50 random colors. Save the plot into your forked repository.
+```{r}
+
+```
+Create a \textit{document term matrix} called \texttt{DTM} that includes the argument \texttt{ control = list(weighting = weightTfIdf)}
+```{r}
+
+```
+Finally, report the 50 words with the the highest tf.idf scores using a lower frequency bound of .8.
+```{r}
+
+```
