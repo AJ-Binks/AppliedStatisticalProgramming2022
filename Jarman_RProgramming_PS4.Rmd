@@ -209,9 +209,8 @@ top_words <- findFreqTerms(DTM, lowfreq = .8)
 #restrict dimension
 top_dtm <- DocumentTermMatrix(tweets_corpus, list(dictionary = top_words))
 #top 50
-top_dtm <- as.matrix(top_dtm)
+top_dtm <- as.matrix(top_dtm) #this is where the error is happening - "error: vector memory exhausted(limit reached?)"
 top_dtm %>% 
-  as.matrix %>% 
   sort(rowSums, decreasing = TRUE) %>% 
   head(50)
 ```
