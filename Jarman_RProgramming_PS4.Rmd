@@ -156,21 +156,62 @@ top_tweets<- tweets_og %>%
 ```
 Create a \textit{corpus} of the tweet content and put this into the object \texttt{Corpus} using the \texttt{tm} (text mining) package. 
 ```{r}
-
+#vignette("tm")
+tweets_corpus <- VCorpus(VectorSource(tweets_og$text))
+#VectorSource= a vector of characters (treats each component as a document)
+tweets_corpus
 ```
 Remove extraneous whitespace, remove numbers and punctuation, convert everything to lower case and remove 'stop words' that have little substantive meaning (the, a, it).
 ```{r}
+# Create a function called "addspace" that finds a user specified pattern and substitutes the pattern with a space.
+addspace <- content_transformer(function(x, pattern) {
+  return(gsub(pattern, " ", x))
+})
+library(tm)
+tweets_corpus <- tm_map(tweets_corpus, addspace, "-")
 
+tweets_corpus <- tweets_corpus %>% 
+   #Remove extraneous whitespace
+   tm_map(stripWhitespace) %>% 
+   #remove numbers and punctuation
+   tm_map(removePunctuation) %>% 
+   tm_map(removeNumbers) %>% 
+   #convert everything to lower case
+  tm_map(content_transformer(tolower)) %>% 
+  #remove 'stop words' that have little substantive meaning (the, a, it).
+  tm_map(removeWords, stopwords("english")) %>% 
+  #remove self mention
+  tm_map(removeWords, "realdonaldtrump")
+#check it worked
+writeLines(head(strwrap(tweets_corpus[[2]]), 15))
 ```
 Now create a \texttt{wordcloud} to visualize the top 50 words the President uses in his tweets. Use only words that occur at least three times. Display the plot with words in random order and use 50 random colors. Save the plot into your forked repository.
 ```{r}
-
+cloud <- wordcloud(tweets_corpus,
+          min.freq = 3, 
+          random.order = T, 
+          random.color =T, 
+          max.words = 50, 
+          colors = colours())
+ggsave("cloud.png")
 ```
 Create a \textit{document term matrix} called \texttt{DTM} that includes the argument \texttt{ control = list(weighting = weightTfIdf)}
 ```{r}
-
+DTM <- DocumentTermMatrix(tweets_corpus, control = list(weighting = weightTfIdf))
+inspect(DTM)
 ```
-Finally, report the 50 words with the the highest tf.idf scores using a lower frequency bound of .8.
+Finally, report the 50 words with the the highest tf.idf scores using a lower frequency bound of .8.\
+!!!!!This is not working!!!!
 ```{r}
-
+#follow page 7 from vignette("tm) to do this by creating a dictionary to restrict dimension of matrix
+#create dictionary
+top_words <- findFreqTerms(DTM, lowfreq = .8)
+#restrict dimension
+top_dtm <- DocumentTermMatrix(tweets_corpus, list(dictionary = top_words))
+#top 50
+top_dtm <- as.matrix(top_dtm)
+top_dtm %>% 
+  as.matrix %>% 
+  sort(rowSums, decreasing = TRUE) %>% 
+  head(50)
 ```
