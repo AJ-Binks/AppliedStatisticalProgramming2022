@@ -1,5 +1,6 @@
 ---
-title: "Applied Statistical Programming - Spring 2022"
+title: "Applied Statistical Programming PS5"
+author: Annie Jarman
 output: pdf_document
 ---
 
@@ -10,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 \begin{center}
 {\Large{\textbf{Problem Set 5}}} \\
 \vspace{4 bp}
-Due Wednesday, March 30, 10:00 AM (Before Class) \\
+Due Monday, April 3, 10:00 AM (Before Class) \\
 \end{center}
 
 \section*{Instructions}
