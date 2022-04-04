@@ -7,7 +7,7 @@
 #' 
 #' An object of the class `Simpson' has the following slots:
 #' \itemize{
-#' \item \code{result} The integral
+#' \item \code{integral} The integral
 #' \item \code{x} a vector of values
 #' \item \code{y} a vector of values of same dimensionality as \code{x} 
 #' }
