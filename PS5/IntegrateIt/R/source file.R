@@ -1,5 +1,6 @@
 #source document
 library(devtools)
+library(roxygen2)
 
 
 #' integrateIt function
