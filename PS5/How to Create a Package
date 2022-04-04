@@ -1,0 +1,5 @@
+order of creation to make a package with devtools and S4: 
+1. create class files for Simpson, Trapezoid, and IntegrateIt
+2. create development file
+3. use development files to create package - just run the development file
+4. Know it worked if it generates Rd files and Namespace file etc. 
