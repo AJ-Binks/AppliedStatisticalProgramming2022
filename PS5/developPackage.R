@@ -12,6 +12,10 @@ load_all(current.code)
 document(current.code)
 
 #test
+#Trapezoid
+integrateIt(1:10, function(x){x+1}, c(0,5), rule = "Trapezoid")
+# Simpson 
+integrateIt(seq(1, 10, 0.1), function(x){x+1}, c(0,5), rule = "Simpson")
 
 
 
