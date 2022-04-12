@@ -14,7 +14,7 @@
 #' 
 #' set.seed(1227)
 #' y <- rpois(12270,130)
-#' plotMLE(y, "basic)
+#' plotMLE(y, "basic")
 #' plotMLE(y, "bootstrap", 1000)
 #' @seealso \code{\link{estimatePois}}
 #' @seealso \code{\link{logLik}}
