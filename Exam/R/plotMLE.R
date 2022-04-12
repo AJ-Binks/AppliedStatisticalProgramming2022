@@ -1,0 +1,54 @@
+#' Plotting function for PoisMLE
+#'
+#' plots the MLE with a confidence interval of plus and minus 1.96 standard errors. Used for object of class \code{PoisMLE}.
+#'
+#' @param y The vector of observed data
+#' @param SEtype One of two methods of calculation; basic or bootstrap 
+#' @param B The number of bootstrapped resamplings if using SEtype="bootstrap". Default set to 1000.
+#'
+#' @return plot
+#'  \item{plot}{A plot for PoisMLE that shows the MLE plus and minus 1.96 standard errors.}
+#' @author Annie Jarman
+#' @note This is used internally for the \code{estimatePois} function
+#' @examples
+#' 
+#' set.seed(1227)
+#' y <- rpois(12270,130)
+#' plotMLE(y, "basic)
+#' plotMLE(y, "bootstrap", 1000)
+#' @seealso \code{\link{estimatePois}}
+#' @seealso \code{\link{logLik}}
+#' @seealso \code{\link{mle}}
+#' @seealso \code{\link{standardError}}
+#' @import ggplot2
+#' @rdname plotMLE
+#' @export
+
+#set generic
+setGeneric(name="plotMLE",
+           def=function(object)
+             {standardGeneric("plotMLE")}
+           )
+
+#set method
+setMethod(f="plotMLE",
+          definition=function(y, SEtype=c("basic", "bootstrap"), B, lambdas){
+            #get mle
+            lambdaHat <- mle(y)
+            #get se
+            se <- standardError(y, SEtype, B)
+            #make sequence of lambdas around mle
+            lambdaSeq <- seq(lambdaHat - 2*lambdaHat, lambdaHat + 2*lambdaHat, by=0.1)
+            #take log likelihood of lambda sequence
+            likelihoods <- logLik(y, lambdaSeq)
+            #use ggplot2 to plot
+            plot <- ggplot()+
+              geom_point(aes(lambdaSeq, likelihoods)) + #points for potential lambdas and their likelihood
+              geom_vline(aes(xintercept=lambdaHat, color="red"))+ #vertical line for MLE
+              geom_vline(aes(xintercept=lambdatHat + 1.96*se, linetype="dashed", color="grey")) + #vertical line for higher confidence interval
+              geom_vline(aes(xintercept=lambdaHat - 1.96*se, linetype="dashed", color="grey")) + #vertical line for lower confidence interval
+              labs(x="Lambda", y="Log Likelihood") +
+              theme_minimal()
+            return(plot)  
+          }
+         )
