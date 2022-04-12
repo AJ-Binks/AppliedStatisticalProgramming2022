@@ -1,0 +1,13 @@
+order of creation to make a package with devtools and S4: 
+	1. create files for fitted model (these are all .R files. When run,  roxygen2 creates .Rd files for them)
+		a)S4 PoisMLE class
+		b)logLik function
+		c)Mle function
+		d)plotMLE function 
+		e)standardError function
+		6)S4 estimate Pois method class
+	2)create development file (here named developPackage.R)
+	3)use development files to create package - just run the development file in RStudio
+	4)Know it worked if it generates Rd files and Namespace file etc. 
+	5)Test the package works
+
