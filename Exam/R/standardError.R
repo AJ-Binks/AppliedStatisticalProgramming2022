@@ -15,7 +15,7 @@
 #' 
 #' set.seed(1227)
 #' y <- rpois(12270,130)
-#' standardError(y, "basic)
+#' standardError(y, "basic")
 #' standardError(y, "bootstrap", 1000)
 #' @seealso \code{\link{estimatePois}}
 #' @seealso \code{\link{logLik}}
