@@ -41,7 +41,8 @@ check_PoisMLE <- function(object){
     errors<- c(errors, "MLE is invalid")
   }
   #test SE
-  if(object@SEtype != "basic" |"bootstrap"){
+  test <- object@SEtype == "basic" | object@SEtype == "bootstrap"
+  if(!test){
     errors<- c(errors, "SEtype is invalid")
   }
   # if there are errors, return errors 
