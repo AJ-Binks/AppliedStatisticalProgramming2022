@@ -40,7 +40,7 @@ standardError <- function(y, SEtype, B=1000){
   #if SEtype="bootstrap"
   if(SEtype=="bootstrap"){
     #create B samples from y (sample with replacement) - result should be a matrix n by B
-    Bsamples <- replicate(B, sample(y, n), replace=TRUE)
+    Bsamples <- replicate(B, sample(y, n), TRUE)
     #calculate MLE for each sample - result should be a vector of MLES of length B
     sampleMLE <- apply(Bsamples, 2, mle)
     #find standard deviation of sampleMLE vector - this output is the bootstrapped standard error

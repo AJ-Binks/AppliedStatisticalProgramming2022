@@ -1,6 +1,7 @@
 #load libraries
 library(devtools)
 library(roxygen2)
+library(testthat)
 
 #setwd
 setwd("~/Documents/GitHub/PS3/Untitled/Exam")
