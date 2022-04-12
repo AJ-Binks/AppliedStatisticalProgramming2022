@@ -21,7 +21,7 @@ check(current.code)
 
 #run examples from functions to make sure they work
 set.seed(1227)
-y <- rpois(12270,130)
+y <- rpois(1227,130)
 #test mle
 lambda <- mle(y)
 #test logLik
@@ -30,6 +30,7 @@ logLik(y,lambda)
 standardError(y, "basic")
 standardError(y, "bootstrap", 1000)
 #test plot
+library(ggplot2)
 plotMLE(y, "basic")
 plotMLE(y, "bootstrap", 1000)
 #test final output

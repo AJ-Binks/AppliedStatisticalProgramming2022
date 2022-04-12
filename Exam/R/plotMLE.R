@@ -26,26 +26,26 @@
 
 #set generic
 setGeneric(name="plotMLE",
-           def=function(object)
+           def=function(y, SEtype, B=1000)
              {standardGeneric("plotMLE")}
            )
 
 #set method
 setMethod(f="plotMLE",
-          definition=function(y, SEtype=c("basic", "bootstrap"), B, lambdas){
+          definition=function(y, SEtype=c("basic", "bootstrap"), B){
             #get mle
             lambdaHat <- mle(y)
             #get se
             se <- standardError(y, SEtype, B)
             #make sequence of lambdas around mle
-            lambdaSeq <- seq(lambdaHat - 2*lambdaHat, lambdaHat + 2*lambdaHat, by=0.1)
+            lambdaSeq <- seq(lambdaHat - 2, lambdaHat + 2, by=0.1)
             #take log likelihood of lambda sequence
             likelihoods <- logLik(y, lambdaSeq)
             #use ggplot2 to plot
-            plot <- ggplot()+
+            plot <- ggplot2::ggplot()+ 
               geom_point(aes(lambdaSeq, likelihoods)) + #points for potential lambdas and their likelihood
               geom_vline(aes(xintercept=lambdaHat, color="red"))+ #vertical line for MLE
-              geom_vline(aes(xintercept=lambdatHat + 1.96*se, linetype="dashed", color="grey")) + #vertical line for higher confidence interval
+              geom_vline(aes(xintercept=lambdaHat + 1.96*se, linetype="dashed", color="grey")) + #vertical line for higher confidence interval
               geom_vline(aes(xintercept=lambdaHat - 1.96*se, linetype="dashed", color="grey")) + #vertical line for lower confidence interval
               labs(x="Lambda", y="Log Likelihood") +
               theme_minimal()
