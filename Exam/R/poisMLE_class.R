@@ -78,3 +78,4 @@ setMethod("initialize", "PoisMLE",
             return(value)
           }
 ) 
+
