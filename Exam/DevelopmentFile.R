@@ -4,7 +4,7 @@ library(roxygen2)
 library(testthat)
 
 #setwd
-setwd("~/Documents/GitHub/PS3/Untitled/")
+setwd("~/Documents/GitHub/PS3/Untitled/Exam/")
 
 #uncomment and run once to create package directory
 create("PoisMLE")
