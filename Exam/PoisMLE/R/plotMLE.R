@@ -40,11 +40,9 @@ setMethod(f="plotMLE",
             lambdaSeq <- seq(lambdaHat - 2, lambdaHat + 2, by=0.1)
             #take log likelihood of lambda sequence
             likelihoods <- logLik(y, lambdaSeq)
-            #join these in df
-            df <- data.frame("x"=lambdaSeq, "y"=likelihoods)
             #use ggplot2 to plot
             plot <- ggplot2::ggplot()+ 
-              geom_point(aes(lambdaSeq, likelihoods), data=df) + #points for potential lambdas and their likelihood
+              geom_point(aes(lambdaSeq, likelihoods)) + #points for potential lambdas and their likelihood
               geom_vline(aes(xintercept=lambdaHat, color="red"))+ #vertical line for MLE
               geom_vline(aes(xintercept=lambdaHat + 1.96*se, color="grey")) + #vertical line for higher confidence interval
               geom_vline(aes(xintercept=lambdaHat - 1.96*se, color="grey")) + #vertical line for lower confidence interval

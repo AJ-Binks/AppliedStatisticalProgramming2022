@@ -29,8 +29,7 @@ logLik(y,lambda)
 #test both standard errors
 standardError(y, "basic")
 standardError(y, "bootstrap", 1000)
-#test plot
-library(ggplot2)
+#test plot - plot doesn't work 
 plotMLE(y, "basic")
 plotMLE(y, "bootstrap", 1000)
 #test final output
