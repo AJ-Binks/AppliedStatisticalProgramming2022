@@ -17,7 +17,7 @@
 #' @examples
 #' 
 #' set.seed(1227)
-#' y <- rpois(12270,130)
+#' y <- rpois(1227,130)
 #' estimatePois(y, "basic)
 #' estimatePois(y, "bootstrap", 1000)
 #' @seealso \code{\link{standardError}}

@@ -12,7 +12,7 @@
 #' @examples
 #' 
 #' set.seed(1227)
-#' y <- rpois(12270,130)
+#' y <- rpois(1227,130)
 #' mle(y)
 #' @seealso \code{\link{estimatePois}}
 #' @seealso \code{\link{logLik}}
