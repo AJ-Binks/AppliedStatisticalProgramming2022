@@ -27,7 +27,7 @@ This is used internally for the \code{estimatePois} function
 \examples{
 
 set.seed(1227)
-y <- rpois(12270,130)
+y <- rpois(1227,130)
 standardError(y, "basic")
 standardError(y, "bootstrap", 1000)
 }

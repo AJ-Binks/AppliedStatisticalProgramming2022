@@ -17,7 +17,6 @@
 #' @seealso \code{\link{estimatePois}}
 #' @seealso \code{\link{logLik}}
 #' @seealso \code{\link{standardError}}
-#' @import methods
 #' @import stats
 #' @rdname mle
 #' @export

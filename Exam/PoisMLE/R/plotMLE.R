@@ -20,7 +20,6 @@
 #' @seealso \code{\link{logLik}}
 #' @seealso \code{\link{mle}}
 #' @seealso \code{\link{standardError}}
-#' @import ggplot2
 #' @rdname plotMLE
 #' @export
 

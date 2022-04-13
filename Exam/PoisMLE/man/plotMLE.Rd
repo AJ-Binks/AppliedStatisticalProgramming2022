@@ -26,7 +26,7 @@ This is used internally for the \code{estimatePois} function
 \examples{
 
 set.seed(1227)
-y <- rpois(12270,130)
+y <- rpois(1227,130)
 plotMLE(y, "basic")
 plotMLE(y, "bootstrap", 1000)
 }
